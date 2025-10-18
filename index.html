@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fischer's Hotel and Village - Reservation</title>
+  <link rel="stylesheet" href="D:/Kuliah/SEMESTER 5/PWD/TugasPendalamanMateri_230712557/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background"></div>
+
+  <header>
+    <h1>Fischer's Hotel and Village</h1>
+    <p>Luxury Resort & Hospitality Excellence</p>
+  </header>
+
+  <div class="container">
+    <form id="reservationForm">
+      <fieldset>
+        <legend>Personal Data</legend>
+        <ol>
+          <li>
+            <label for="name">Full Name</label><br>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+          </li>
+          <li>
+            <label for="gender">Gender</label><br>
+            <select id="gender" name="gender" required>
+              <option value="">Select gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Prefer not to say</option>
+            </select>
+          </li>
+          <li>
+            <label for="email">Email Address</label><br>
+            <input type="email" id="email" name="email" placeholder="example@email.com" required>
+          </li>
+          <li>
+            <label for="telp">Phone Number</label><br>
+            <input type="tel" id="telp" name="telp" placeholder="+62 xxx xxxx xxxx" pattern="[0-9+ ]+" required>
+          </li>
+        </ol>
+      </fieldset>
+
+      <h3>Reservation Room Form</h3>
+      <ol>
+        <li>
+          <label for="reservation">Reservation Name</label><br>
+          <input type="text" id="reservation" name="reservation" placeholder="Name for reservation" required>
+        </li>
+        <li class="date-field">
+          <label for="bookdate">Booking Date</label><br>
+          <input type="date" id="bookdate" name="bookdate" required>
+        </li>
+        <li>
+          <label for="roomtype">Room Type</label><br>
+          <select id="roomtype" name="roomtype" required>
+            <option value="">Select room</option>
+            <option>Deluxe</option>
+            <option>Superior</option>
+            <option>Suite</option>
+          </select>
+        </li>
+        <li>
+          <label for="bedtype">Bed Type</label><br>
+          <select id="bedtype" name="bedtype" required>
+            <option value="">Select bed</option>
+            <option>Single Bed</option>
+            <option>Double Bed</option>
+            <option>King Size</option>
+          </select>
+        </li>
+        <li>
+          <label>Breakfast</label><br>
+          <input type="radio" id="with" name="breakfast" value="With Breakfast" required>
+          <label for="with">With Breakfast</label>
+          <input type="radio" id="without" name="breakfast" value="Without Breakfast">
+          <label for="without">Without Breakfast</label>
+        </li>
+      </ol>
+
+      <fieldset>
+        <legend>Payment</legend>
+        <ol>
+          <li class="date-field">
+            <label for="checkin">Check-in Date</label><br>
+            <input type="date" id="checkin" name="checkin" required>
+          </li>
+          <li class="date-field">
+            <label for="checkout">Check-out Date</label><br>
+            <input type="date" id="checkout" name="checkout" required>
+            <span id="dateError" class="error-message"></span>
+          </li>
+          <li>
+            <label for="payment">Payment Method</label><br>
+            <select id="payment" name="payment" required>
+              <option value="">Select payment method</option>
+              <option>Cash</option>
+              <option>Credit Card</option>
+              <option>Debit Card</option>
+              <option>Bank Transfer</option>
+            </select>
+          </li>
+        </ol>
+      </fieldset>
+
+      <div class="form-footer">
+        <input type="submit" value="Submit Reservation">
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    © 2025 Fischer's Hotel and Village — Your comfort is our priority.
+  </footer>
+
+  <script>
+    const checkin = document.getElementById('checkin');
+    const checkout = document.getElementById('checkout');
+    const dateError = document.getElementById('dateError');
+
+    checkout.addEventListener('input', () => {
+      if (checkin.value && checkout.value && checkout.value <= checkin.value) {
+        dateError.textContent = "⚠️ Check-out must be after check-in date.";
+        checkout.setCustomValidity("Invalid checkout date");
+      } else {
+        dateError.textContent = "";
+        checkout.setCustomValidity("");
+      }
+    });
+
+    checkin.addEventListener('input', () => {
+      if (checkout.value && checkout.value <= checkin.value) {
+        dateError.textContent = "⚠️ Check-out must be after check-in date.";
+        checkout.setCustomValidity("Invalid checkout date");
+      } else {
+        dateError.textContent = "";
+        checkout.setCustomValidity("");
+      }
+    });
+  </script>
+</body>
+</html>
